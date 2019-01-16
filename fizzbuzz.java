@@ -1,28 +1,23 @@
-public class FizzBuzz{
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-  public static void main(String []args){
-      
-    for (int x = 1; x <= 100; x++) 
-    {
-      boolean divBy3 = x % 3 == 0;
-      boolean divBy5 = x % 5 == 0;
-      
-      if (divBy3 && divBy5) 
-      {
-          System.out.println("FizzBuzz"); 
-      } 
-      else if (divBy3) 
-      {
-          System.out.println("Fizz"); 
-      } 
-      else if (divBy5) 
-      {
-          System.out.println("Buzz"); 
-      } 
-      else 
-      {
-          System.out.println(x);  
-      }
+public class App {
+    public static void main(String[] args) {
+        
+        IntStream.range(1, 101)
+                .mapToObj(x -> { 
+                    boolean divBy3 = x % 3 == 0;
+                    boolean divBy5 = x % 5 == 0;
+                    
+                    if (divBy3 && divBy5) 
+                        return "FizzBuzz"; 
+                    else if (divBy3) 
+                        return "Fizz"; 
+                    else if (divBy5) 
+                        return "Buzz"; 
+                    return x;
+                })
+                .collect(Collectors.toList())
+                .forEach(System.out::println);;
     }
-  }
 }
